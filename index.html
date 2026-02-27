@@ -22,16 +22,29 @@
         .glow-orange {
             box-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
         }
+        .map-grid {
+            background-image: linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        .animate-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 5s linear forwards infinite;
+        }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 road-texture">
 
-    <div class="max-w-md w-full bg-slate-800 rounded-3xl overflow-hidden shadow-2xl border border-slate-700 relative">
+    <div class="max-w-md w-full bg-slate-800 rounded-3xl overflow-hidden shadow-2xl border border-slate-700 relative my-8">
         
         <!-- Header Section -->
-        <div class="relative h-56 overflow-hidden">
+        <div class="relative h-44 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-800 to-transparent z-10"></div>
-            <!-- Motorbike Icon SVG -->
             <div class="absolute inset-0 bg-slate-900 flex items-center justify-center">
                 <svg viewBox="0 0 24 24" class="w-32 h-32 text-slate-700 opacity-30" fill="currentColor">
                     <path d="M19.5,13.5L18.1,10.6C17.7,9.7 16.8,9.2 15.8,9.2H13V7.2H14V5.2H10V7.2H11V9.2H5.5C4.7,9.2 4,9.9 4,10.7V14.2H5.5C5.5,15.6 6.6,16.7 8,16.7C9.4,16.7 10.5,15.6 10.5,14.2H13.5C13.5,15.6 14.6,16.7 16,16.7C17.4,16.7 18.5,15.6 18.5,14.2H20V12.7L19.5,13.5Z" />
@@ -39,13 +52,13 @@
             </div>
             
             <div class="absolute bottom-4 left-6 z-20">
-                <h1 class="header-font text-5xl text-orange-500 tracking-wider">TOURING BUKBER</h1>
-                <p class="text-slate-300 font-bold tracking-widest uppercase text-sm">Gas Tipis-Tipis • Ramadhan 2026</p>
+                <h1 class="header-font text-5xl text-orange-500 tracking-wider leading-none">TOURING BUKBER</h1>
+                <p class="text-slate-300 font-bold tracking-widest uppercase text-[10px] mt-1">Gas Tipis-Tipis • Ramadhan 2026</p>
             </div>
         </div>
 
         <!-- Content -->
-        <div class="p-6 space-y-8">
+        <div class="p-6 space-y-6">
             
             <!-- Countdown Timer -->
             <div class="bg-slate-900/50 p-4 rounded-2xl border border-orange-500/30 flex justify-around items-center glow-orange">
@@ -64,51 +77,106 @@
                     <span class="text-[10px] text-slate-400 uppercase font-bold">Detik</span>
                 </div>
                 <div class="ml-2 border-l border-slate-700 pl-4">
-                    <p class="text-[10px] uppercase text-slate-400 font-bold leading-tight">Waktu Berangkat<br><span class="text-white font-bold">16.00 WIB</span></p>
+                    <p class="text-[10px] uppercase text-slate-400 font-bold leading-tight">Start<br><span class="text-white font-bold">16.00 WIB</span></p>
                 </div>
             </div>
 
-            <!-- Itinerary -->
-            <div class="space-y-6 relative">
-                <!-- Vertical Progress Line -->
-                <div class="absolute left-3 top-2 bottom-2 w-0.5 bg-gradient-to-b from-orange-500 via-orange-500 to-slate-600"></div>
+            <!-- Visualization Map with Button -->
+            <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 relative">
+                <div class="absolute top-2 left-3 z-10">
+                    <span class="text-[10px] font-bold text-orange-500 uppercase tracking-widest bg-slate-900/80 px-2 py-0.5 rounded">Peta Rute</span>
+                </div>
+                <div class="h-40 w-full map-grid relative overflow-hidden">
+                    <svg viewBox="0 0 400 200" class="w-full h-full p-4">
+                        <path d="M 300 160 L 280 100 L 100 60 L 120 150 Z" 
+                              fill="none" 
+                              stroke="#f97316" 
+                              stroke-width="3" 
+                              stroke-dasharray="8 4" 
+                              class="animate-path" />
+                        <circle cx="300" cy="160" r="5" fill="#f97316" />
+                        <text x="310" y="175" fill="white" font-size="10" font-weight="bold">BANDUNG</text>
+                        <circle cx="100" cy="60" r="6" fill="#22c55e" />
+                        <text x="55" y="50" fill="#22c55e" font-size="10" font-weight="bold">SITU WANAYASA</text>
+                    </svg>
+                </div>
+                <!-- Tombol di bawah pratinjau peta -->
+                <button onclick="window.open('https://maps.app.goo.gl/RU9F7QDVZwCVff3r5', '_blank')" class="w-full bg-slate-800 hover:bg-slate-700 text-orange-500 font-bold py-2 text-xs border-t border-slate-700 flex items-center justify-center space-x-2 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span>Petunjuk Rute Google Maps</span>
+                </button>
+            </div>
 
-                <!-- Step 1: Gathering -->
-                <div class="relative pl-10">
-                    <div class="absolute left-0 top-1 w-6 h-6 bg-orange-500 rounded-full border-4 border-slate-800 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-white rounded-full"></div>
+            <!-- List of Riders (No Scroll) -->
+            <div class="bg-slate-900/30 rounded-2xl p-4 border border-slate-700">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="header-font text-xl text-orange-500 tracking-wide">DAFTAR RIDER</h3>
+                    <span class="text-[10px] bg-orange-500 text-white px-2 py-0.5 rounded-full font-bold">8 BERGABUNG</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div class="flex items-center space-x-2 bg-slate-700/40 p-2 rounded-lg border border-slate-600">
+                        <div class="w-6 h-6 rounded-full bg-orange-600 flex items-center justify-center font-bold text-[10px]">R1</div>
+                        <span class="text-slate-200 font-semibold truncate">Aldy Septian</span>
                     </div>
-                    <h3 class="font-bold text-orange-500 uppercase text-xs tracking-widest">Titik Kumpul (16.00)</h3>
-                    <p class="text-white font-semibold">Jl. Cipunagara No. 16</p>
-                    <p class="text-slate-400 text-xs mt-1">Kota Bandung - Siapkan amunisi & bensin!</p>
+                    <div class="flex items-center space-x-2 bg-slate-700/40 p-2 rounded-lg border border-slate-600">
+                        <div class="w-6 h-6 rounded-full bg-slate-600 flex items-center justify-center font-bold text-[10px]">R2</div>
+                        <span class="text-slate-200 font-semibold truncate">Ari Ardiana</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-slate-700/40 p-2 rounded-lg border border-slate-600">
+                        <div class="w-6 h-6 rounded-full bg-slate-600 flex items-center justify-center font-bold text-[10px]">R3</div>
+                        <span class="text-slate-200 font-semibold truncate">Rangga W Yogaswara</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-slate-700/40 p-2 rounded-lg border border-slate-600">
+                        <div class="w-6 h-6 rounded-full bg-slate-600 flex items-center justify-center font-bold text-[10px]">R4</div>
+                        <span class="text-slate-200 font-semibold truncate">Rizki Al Kausar</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-slate-700/40 p-2 rounded-lg border border-slate-600">
+                        <div class="w-6 h-6 rounded-full bg-slate-600 flex items-center justify-center font-bold text-[10px]">R5</div>
+                        <span class="text-slate-200 font-semibold truncate">Langgeng</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-slate-700/40 p-2 rounded-lg border border-slate-600">
+                        <div class="w-6 h-6 rounded-full bg-slate-600 flex items-center justify-center font-bold text-[10px]">R6</div>
+                        <span class="text-slate-200 font-semibold truncate">Aldi Gumilang</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-slate-700/40 p-2 rounded-lg border border-slate-600">
+                        <div class="w-6 h-6 rounded-full bg-slate-600 flex items-center justify-center font-bold text-[10px]">R6</div>
+                        <span class="text-slate-200 font-semibold truncate">Jakaria Agus "Andri"</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-slate-700/40 p-2 rounded-lg border border-slate-600">
+                        <div class="w-6 h-6 rounded-full bg-slate-600 flex items-center justify-center font-bold text-[10px]">R6</div>
+                        <span class="text-slate-200 font-semibold truncate">Uun Begundal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Detailed -->
+            <div class="space-y-6 relative pb-2">
+                <div class="absolute left-3 top-2 bottom-2 w-0.5 bg-gradient-to-b from-orange-500 via-orange-500 to-slate-600"></div>
+                
+                <div class="relative pl-10">
+                    <div class="absolute left-0 top-1 w-6 h-6 bg-orange-500 rounded-full border-4 border-slate-800 flex items-center justify-center"></div>
+                    <h3 class="font-bold text-orange-500 uppercase text-xs tracking-widest leading-none mb-1">Kumpul (16.00)</h3>
+                    <p class="text-white font-semibold text-sm">Jl. Cipunagara No. 16</p>
                 </div>
 
-                <!-- Step 2: Route Out -->
                 <div class="relative pl-10">
                     <div class="absolute left-1 top-2 w-4 h-4 bg-slate-600 rounded-full border-2 border-slate-800"></div>
-                    <h3 class="font-bold text-slate-400 uppercase text-xs tracking-widest">Rute Pergi</h3>
-                    <p class="text-slate-300">Bandung → Lembang → Wanayasa</p>
-                    <div class="mt-2 flex space-x-2">
-                        <span class="px-2 py-1 bg-slate-700 rounded text-[10px] text-orange-300 font-bold">#EnjoyTheView</span>
-                        <span class="px-2 py-1 bg-slate-700 rounded text-[10px] text-orange-300 font-bold">#Solidarity</span>
-                    </div>
+                    <h3 class="font-bold text-slate-400 uppercase text-xs tracking-widest leading-none mb-1">Berangkat</h3>
+                    <p class="text-slate-300 text-sm">Jalur Lembang</p>
                 </div>
 
-                <!-- Step 3: Destination -->
                 <div class="relative pl-10">
                     <div class="absolute left-0 top-1 w-6 h-6 bg-green-500 rounded-full border-4 border-slate-800 flex items-center justify-center">
                         <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
                     </div>
-                    <h3 class="font-bold text-green-500 uppercase text-xs tracking-widest">Titik Bukber</h3>
-                    <p class="text-white font-semibold">Sate Maranggi Wanayasa</p>
-                    <p class="text-slate-400 text-xs mt-1">Depan Danau Wanayasa, Purwakarta</p>
+                    <h3 class="font-bold text-green-500 uppercase text-xs tracking-widest leading-none mb-1">Titik Bukber</h3>
+                    <p class="text-white font-semibold text-sm">Sate Maranggi Wanayasa</p>
                 </div>
 
-                <!-- Step 4: Return -->
                 <div class="relative pl-10">
                     <div class="absolute left-1 top-2 w-4 h-4 bg-slate-600 rounded-full border-2 border-slate-800"></div>
-                    <h3 class="font-bold text-slate-400 uppercase text-xs tracking-widest">Rute Pulang</h3>
-                    <p class="text-slate-300">Purwakarta → Padalarang → Bandung</p>
+                    <h3 class="font-bold text-slate-400 uppercase text-xs tracking-widest leading-none mb-1">Pulang</h3>
+                    <p class="text-slate-300 text-sm">Jalur Padalarang</p>
                 </div>
             </div>
 
@@ -116,8 +184,8 @@
             <div class="pt-4 border-t border-slate-700">
                 <div class="flex items-start space-x-3 text-slate-400">
                     <svg class="w-5 h-5 text-orange-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    <p class="text-[11px] leading-relaxed italic">
-                        Jangan lupa cek rem, ban, serta surat-surat. Berkendara aman, tetap waspada di jalan. Jaga solidaritas!
+                    <p class="text-[10px] leading-relaxed italic uppercase font-bold tracking-tight">
+                        Ride safe, No arogan. Ingat keluarga menunggu di rumah!
                     </p>
                 </div>
             </div>
@@ -126,25 +194,22 @@
     </div>
 
     <script>
-        // Set Waktu Target (Jam 4 Sore Hari Ini)
+        // Set Waktu Target
         const targetDate = new Date();
         targetDate.setHours(16, 0, 0, 0);
 
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate.getTime() - now;
-
             if (distance < 0) {
                 document.getElementById("countdown-hours").innerText = "00";
                 document.getElementById("countdown-mins").innerText = "00";
                 document.getElementById("countdown-secs").innerText = "00";
                 return;
             }
-
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
             document.getElementById("countdown-hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("countdown-mins").innerText = minutes.toString().padStart(2, '0');
             document.getElementById("countdown-secs").innerText = seconds.toString().padStart(2, '0');
@@ -164,11 +229,9 @@
             
             const btnText = document.getElementById("btn-text");
             const btn = btnText.parentElement;
-            
             const originalText = btnText.innerText;
-            btnText.innerText = "Berhasil Disalin!";
+            btnText.innerText = "Lokasi Berhasil Disalin!";
             btn.classList.replace('bg-orange-600', 'bg-green-600');
-            
             setTimeout(() => {
                 btnText.innerText = originalText;
                 btn.classList.replace('bg-green-600', 'bg-orange-600');
