@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touring Bukber - Sate Maranggi Wanayasa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .header-font {
+            font-family: 'Bebas Neue', cursive;
+        }
+        .road-texture {
+            background-image: radial-gradient(circle at 2px 2px, #334155 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .glow-orange {
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 road-texture">
+
+    <div class="max-w-md w-full bg-slate-800 rounded-3xl overflow-hidden shadow-2xl border border-slate-700 relative">
+        
+        <!-- Header Section -->
+        <div class="relative h-56 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-800 to-transparent z-10"></div>
+            <!-- Motorbike Icon SVG -->
+            <div class="absolute inset-0 bg-slate-900 flex items-center justify-center">
+                <svg viewBox="0 0 24 24" class="w-32 h-32 text-slate-700 opacity-30" fill="currentColor">
+                    <path d="M19.5,13.5L18.1,10.6C17.7,9.7 16.8,9.2 15.8,9.2H13V7.2H14V5.2H10V7.2H11V9.2H5.5C4.7,9.2 4,9.9 4,10.7V14.2H5.5C5.5,15.6 6.6,16.7 8,16.7C9.4,16.7 10.5,15.6 10.5,14.2H13.5C13.5,15.6 14.6,16.7 16,16.7C17.4,16.7 18.5,15.6 18.5,14.2H20V12.7L19.5,13.5Z" />
+                </svg>
+            </div>
+            
+            <div class="absolute bottom-4 left-6 z-20">
+                <h1 class="header-font text-5xl text-orange-500 tracking-wider">TOURING BUKBER</h1>
+                <p class="text-slate-300 font-bold tracking-widest uppercase text-sm">Gas Tipis-Tipis • Ramadhan 2026</p>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-6 space-y-8">
+            
+            <!-- Countdown Timer -->
+            <div class="bg-slate-900/50 p-4 rounded-2xl border border-orange-500/30 flex justify-around items-center glow-orange">
+                <div class="text-center">
+                    <span id="countdown-hours" class="block text-2xl font-black text-orange-500">00</span>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold">Jam</span>
+                </div>
+                <div class="text-orange-500 font-bold text-xl">:</div>
+                <div class="text-center">
+                    <span id="countdown-mins" class="block text-2xl font-black text-orange-500">00</span>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold">Menit</span>
+                </div>
+                <div class="text-orange-500 font-bold text-xl">:</div>
+                <div class="text-center">
+                    <span id="countdown-secs" class="block text-2xl font-black text-orange-500">00</span>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold">Detik</span>
+                </div>
+                <div class="ml-2 border-l border-slate-700 pl-4">
+                    <p class="text-[10px] uppercase text-slate-400 font-bold leading-tight">Waktu Berangkat<br><span class="text-white font-bold">16.00 WIB</span></p>
+                </div>
+            </div>
+
+            <!-- Itinerary -->
+            <div class="space-y-6 relative">
+                <!-- Vertical Progress Line -->
+                <div class="absolute left-3 top-2 bottom-2 w-0.5 bg-gradient-to-b from-orange-500 via-orange-500 to-slate-600"></div>
+
+                <!-- Step 1: Gathering -->
+                <div class="relative pl-10">
+                    <div class="absolute left-0 top-1 w-6 h-6 bg-orange-500 rounded-full border-4 border-slate-800 flex items-center justify-center">
+                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <h3 class="font-bold text-orange-500 uppercase text-xs tracking-widest">Titik Kumpul (16.00)</h3>
+                    <p class="text-white font-semibold">Jl. Cipunagara No. 16</p>
+                    <p class="text-slate-400 text-xs mt-1">Kota Bandung - Siapkan amunisi & bensin!</p>
+                </div>
+
+                <!-- Step 2: Route Out -->
+                <div class="relative pl-10">
+                    <div class="absolute left-1 top-2 w-4 h-4 bg-slate-600 rounded-full border-2 border-slate-800"></div>
+                    <h3 class="font-bold text-slate-400 uppercase text-xs tracking-widest">Rute Pergi</h3>
+                    <p class="text-slate-300">Bandung → Lembang → Wanayasa</p>
+                    <div class="mt-2 flex space-x-2">
+                        <span class="px-2 py-1 bg-slate-700 rounded text-[10px] text-orange-300 font-bold">#EnjoyTheView</span>
+                        <span class="px-2 py-1 bg-slate-700 rounded text-[10px] text-orange-300 font-bold">#Solidarity</span>
+                    </div>
+                </div>
+
+                <!-- Step 3: Destination -->
+                <div class="relative pl-10">
+                    <div class="absolute left-0 top-1 w-6 h-6 bg-green-500 rounded-full border-4 border-slate-800 flex items-center justify-center">
+                        <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-green-500 uppercase text-xs tracking-widest">Titik Bukber</h3>
+                    <p class="text-white font-semibold">Sate Maranggi Wanayasa</p>
+                    <p class="text-slate-400 text-xs mt-1">Depan Danau Wanayasa, Purwakarta</p>
+                </div>
+
+                <!-- Step 4: Return -->
+                <div class="relative pl-10">
+                    <div class="absolute left-1 top-2 w-4 h-4 bg-slate-600 rounded-full border-2 border-slate-800"></div>
+                    <h3 class="font-bold text-slate-400 uppercase text-xs tracking-widest">Rute Pulang</h3>
+                    <p class="text-slate-300">Purwakarta → Padalarang → Bandung</p>
+                </div>
+            </div>
+
+            <!-- Safety Note -->
+            <div class="pt-4 border-t border-slate-700">
+                <div class="flex items-start space-x-3 text-slate-400">
+                    <svg class="w-5 h-5 text-orange-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <p class="text-[11px] leading-relaxed italic">
+                        Jangan lupa cek rem, ban, serta surat-surat. Berkendara aman, tetap waspada di jalan. Jaga solidaritas!
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Set Waktu Target (Jam 4 Sore Hari Ini)
+        const targetDate = new Date();
+        targetDate.setHours(16, 0, 0, 0);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate.getTime() - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown-hours").innerText = "00";
+                document.getElementById("countdown-mins").innerText = "00";
+                document.getElementById("countdown-secs").innerText = "00";
+                return;
+            }
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown-hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("countdown-mins").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("countdown-secs").innerText = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        function copyLocation() {
+            const text = "Jl. Cipunagara No.16, Kota Bandung";
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            
+            const btnText = document.getElementById("btn-text");
+            const btn = btnText.parentElement;
+            
+            const originalText = btnText.innerText;
+            btnText.innerText = "Berhasil Disalin!";
+            btn.classList.replace('bg-orange-600', 'bg-green-600');
+            
+            setTimeout(() => {
+                btnText.innerText = originalText;
+                btn.classList.replace('bg-green-600', 'bg-orange-600');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
